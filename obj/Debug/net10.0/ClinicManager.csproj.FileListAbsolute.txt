@@ -289,3 +289,8 @@ C:\Users\Bartosz\source\repos\projekt\ClinicManager\obj\Debug\net10.0\refint\Cli
 C:\Users\Bartosz\source\repos\projekt\ClinicManager\obj\Debug\net10.0\ClinicManager.pdb
 C:\Users\Bartosz\source\repos\projekt\ClinicManager\obj\Debug\net10.0\ClinicManager.genruntimeconfig.cache
 C:\Users\Bartosz\source\repos\projekt\ClinicManager\obj\Debug\net10.0\ref\ClinicManager.dll
+C:\Users\Bartosz\source\repos\projekt\ClinicManager\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\Bartosz\source\repos\projekt\ClinicManager\bin\Debug\net10.0\Riok.Mapperly.Abstractions.dll
+C:\Users\Bartosz\source\repos\projekt\ClinicManager\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Bartosz\source\repos\projekt\ClinicManager\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Bartosz\source\repos\projekt\ClinicManager\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
