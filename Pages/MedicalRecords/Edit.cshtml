@@ -1,0 +1,23 @@
+@page "{id:guid}"
+@model ClinicManager.Pages.MedicalRecords.EditModel
+@{
+    ViewData["Title"] = "Edytuj wpis kartoteki";
+}
+
+<h2>Edytuj wpis</h2>
+
+<form method="post" class="row g-3 mt-2" style="max-width:600px">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="RecordId" />
+
+    <div class="col-12">
+        <label asp-for="Input.Description" class="form-label">Opis</label>
+        <input asp-for="Input.Description" class="form-control" />
+        <span asp-validation-for="Input.Description" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a asp-page="Index" asp-route-patientId="@Model.PatientId" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>

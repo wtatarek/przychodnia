@@ -1,0 +1,24 @@
+@page "{id:guid}"
+@model ClinicManager.Pages.MedicalRecords.DeleteModel
+@{
+    ViewData["Title"] = "Usuń wpis z kartoteki";
+}
+
+<h2>Czy na pewno usunąć ten wpis?</h2>
+
+@if (Model.Record is not null)
+{
+    <div class="alert alert-warning">
+        <strong>@Model.Record.Description</strong><br />
+        Data: @Model.Record.UploadedAt.ToString("yyyy-MM-dd HH:mm")
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Tak, usuń</button>
+        <a asp-page="Index" asp-route-patientId="@Model.Record.PatientId" class="btn btn-secondary">Nie, wróć</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-info">Wpis nie został znaleziony.</div>
+}

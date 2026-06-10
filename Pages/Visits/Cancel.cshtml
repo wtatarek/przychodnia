@@ -1,0 +1,27 @@
+@page "{id:guid}"
+@model ClinicManager.Pages.Visits.CancelModel
+@{
+    ViewData["Title"] = "Anuluj wizytę";
+}
+
+<h2>Czy na pewno anulować tę wizytę?</h2>
+
+@if (Model.Visit is not null)
+{
+    <div class="alert alert-warning">
+        <strong>@Model.Visit.PatientName</strong><br />
+        Lekarz: @Model.Visit.DoctorName<br />
+        Data: @Model.Visit.ScheduledAt.ToString("yyyy-MM-dd HH:mm")<br />
+        Status: @Model.Visit.Status
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Tak, anuluj</button>
+        <a asp-page="Index" class="btn btn-secondary">Nie, wróć</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-info">Wizyta nie została znaleziona.</div>
+    <a asp-page="Index" class="btn btn-primary">Wróć do listy</a>
+}

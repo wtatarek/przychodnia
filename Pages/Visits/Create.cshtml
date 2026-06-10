@@ -1,0 +1,39 @@
+@page
+@model ClinicManager.Pages.Visits.CreateModel
+@{
+    ViewData["Title"] = "Nowa wizyta";
+}
+
+<h2>Nowa wizyta</h2>
+
+<form method="post" class="row g-3 mt-2" style="max-width:600px">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="col-12">
+        <label asp-for="Input.PatientId" class="form-label">Pacjent</label>
+        <select asp-for="Input.PatientId" asp-items="Model.PatientList" class="form-select">
+            <option value="">-- Wybierz pacjenta --</option>
+        </select>
+        <span asp-validation-for="Input.PatientId" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Input.AssignedDoctorId" class="form-label">Lekarz</label>
+        <select asp-for="Input.AssignedDoctorId" asp-items="Model.DoctorList" class="form-select">
+            <option value="">-- Wybierz lekarza --</option>
+        </select>
+        <span asp-validation-for="Input.AssignedDoctorId" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Input.ScheduledAt" class="form-label">Data i godzina</label>
+        <input asp-for="Input.ScheduledAt" type="datetime-local" class="form-control" />
+        <span asp-validation-for="Input.ScheduledAt" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Input.Notes" class="form-label">Notatki (opcjonalnie)</label>
+        <textarea asp-for="Input.Notes" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a asp-page="Index" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>

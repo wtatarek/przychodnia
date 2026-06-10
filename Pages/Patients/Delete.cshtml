@@ -1,0 +1,26 @@
+@page "{id:guid}"
+@model ClinicManager.Pages.Patients.DeleteModel
+@{
+    ViewData["Title"] = "Usuń pacjenta";
+}
+
+<h2>Czy na pewno usunąć tego pacjenta?</h2>
+
+@if (Model.Patient is not null)
+{
+    <div class="alert alert-warning">
+        <strong>@Model.Patient.FirstName @Model.Patient.LastName</strong><br />
+        PESEL: @Model.Patient.Pesel<br />
+        Ubezpieczenie: @(Model.Patient.InsuranceNumber ?? "-")
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Tak, usuń</button>
+        <a asp-page="Index" class="btn btn-secondary">Nie, wróć</a>
+    </form>
+}
+else
+{
+    <div class="alert alert-info">Pacjent nie został znaleziony.</div>
+    <a asp-page="Index" class="btn btn-primary">Wróć do listy</a>
+}

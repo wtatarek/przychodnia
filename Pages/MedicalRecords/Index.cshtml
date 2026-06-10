@@ -1,0 +1,58 @@
+@page "{patientId:guid}"
+@model ClinicManager.Pages.MedicalRecords.IndexModel
+@{
+    ViewData["Title"] = "Kartoteka medyczna";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Kartoteka: @Model.PatientName</h2>
+    <a asp-page="Create" asp-route-patientId="@Model.PatientId" class="btn btn-primary">+ Dodaj dokument</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@if (Model.Records.Count == 0)
+{
+    <div class="alert alert-info">Brak dokumentów w kartotece.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Opis</th>
+                <th>Data dodania</th>
+                <th>Skan</th>
+                <th style="width:150px">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model.Records)
+            {
+                <tr>
+                    <td>@r.Description</td>
+                    <td>@r.UploadedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(r.DocumentScanUrl))
+                        {
+                            <a href="@r.DocumentScanUrl" target="_blank" class="btn btn-sm btn-outline-info">Podgląd</a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">-</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@r.Id" asp-route-patientId="@Model.PatientId" class="btn btn-sm btn-outline-secondary">Edytuj</a>
+                        <a asp-page="Delete" asp-route-id="@r.Id" asp-route-patientId="@Model.PatientId" class="btn btn-sm btn-outline-danger">Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-page="/Patients/Index" class="btn btn-secondary">← Wróć do pacjentów</a>

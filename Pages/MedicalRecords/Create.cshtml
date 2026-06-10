@@ -1,0 +1,27 @@
+@page "{patientId:guid}"
+@model ClinicManager.Pages.MedicalRecords.CreateModel
+@{
+    ViewData["Title"] = "Dodaj dokument do kartoteki";
+}
+
+<h2>Dodaj dokument – @Model.PatientName</h2>
+
+<form method="post" enctype="multipart/form-data" class="row g-3 mt-2" style="max-width:600px">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input type="hidden" asp-for="PatientId" />
+
+    <div class="col-12">
+        <label asp-for="Input.Description" class="form-label">Opis dokumentu</label>
+        <input asp-for="Input.Description" class="form-control" />
+        <span asp-validation-for="Input.Description" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Skan (opcjonalnie) – PDF, JPG, PNG, DOC</label>
+        <input type="file" name="UploadedFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a asp-page="Index" asp-route-patientId="@Model.PatientId" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>

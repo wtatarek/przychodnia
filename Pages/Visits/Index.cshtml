@@ -1,0 +1,70 @@
+@page
+@model ClinicManager.Pages.Visits.IndexModel
+@{
+    ViewData["Title"] = "Wizyty";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Wizyty</h2>
+    <a asp-page="Create" class="btn btn-primary">+ Nowa wizyta</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@if (Model.Visits.Count == 0)
+{
+    <div class="alert alert-info">Brak wizyt.</div>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Pacjent</th>
+                <th>Lekarz</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Koszt</th>
+                <th style="width:220px">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model.Visits)
+            {
+                <tr>
+                    <td>@v.PatientName</td>
+                    <td>@v.DoctorName</td>
+                    <td>@v.ScheduledAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        @switch (v.Status)
+                        {
+                            case "Zaplanowana":
+                                <span class="badge bg-primary">@v.Status</span>
+                                break;
+                            case "WTrakcie":
+                                <span class="badge bg-warning text-dark">@v.Status</span>
+                                break;
+                            case "Zakonczona":
+                                <span class="badge bg-success">@v.Status</span>
+                                break;
+                            case "Anulowana":
+                                <span class="badge bg-danger">@v.Status</span>
+                                break;
+                        }
+                    </td>
+                    <td>@v.TotalCost.ToString("N2") zł</td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@v.Id" class="btn btn-sm btn-outline-secondary">Edytuj</a>
+                        @if (v.Status != "Anulowana")
+                        {
+                            <a asp-page="Cancel" asp-route-id="@v.Id" class="btn btn-sm btn-outline-danger">Anuluj</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
