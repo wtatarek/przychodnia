@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[10.0.3, )"
             },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
             "Riok.Mapperly": {
               "target": "Package",
               "version": "[4.3.0, )"

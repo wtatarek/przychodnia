@@ -10,6 +10,8 @@ public static partial class VisitMapper
     // Visit → VisitDto (nazwy uzupełniane ręcznie w serwisie)
     [MapperIgnoreSource(nameof(Visit.Patient))]
     [MapperIgnoreSource(nameof(Visit.AssignedDoctor))]
+    [MapperIgnoreTarget(nameof(VisitDto.PatientName))]
+    [MapperIgnoreTarget(nameof(VisitDto.DoctorName))]
     [MapProperty(nameof(Visit.Status), nameof(VisitDto.Status), Use = nameof(MapStatusToString))]
     public static partial VisitDto ToDto(Visit visit);
 
@@ -20,6 +22,8 @@ public static partial class VisitMapper
     [MapperIgnoreSource(nameof(Visit.Notes))]
     [MapperIgnoreSource(nameof(Visit.PatientId))]
     [MapperIgnoreSource(nameof(Visit.AssignedDoctorId))]
+    [MapperIgnoreTarget(nameof(VisitListResponse.PatientName))]
+    [MapperIgnoreTarget(nameof(VisitListResponse.DoctorName))]
     [MapProperty(nameof(Visit.Status), nameof(VisitListResponse.Status), Use = nameof(MapStatusToString))]
     public static partial VisitListResponse ToListResponse(Visit visit);
 

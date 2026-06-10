@@ -1,0 +1,28 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# NLog logs
+/logs/
+
+# Uploads (dev/test files)
+/wwwroot/uploads/*
+!/wwwroot/uploads/.gitkeep
+
+# NuGet
+*.nupkg
+**/packages/*
+
+# EF Core
+*.db
+*.mdf
+*.ldf
+
+# OS
+.DS_Store
+Thumbs.db

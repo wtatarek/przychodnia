@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using ClinicManager.Data;
 using ClinicManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// NLog – logowanie do plików (/logs/errors.log, /logs/all.log)
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
